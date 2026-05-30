@@ -108,6 +108,11 @@ main{
     color: var(--white);
 }
 
+.gorjeta .botao-ativo{
+    background-color: var(--light-green);
+    color: var(--green-800);
+}
+
 .gorjeta input[type="button"]:hover,
 .resultados button:hover{
     background-color: var(--green-hover);
@@ -211,7 +216,7 @@ main{
         display: flex;
         gap: 3rem;
         padding: 3rem;
-        border-radius: 1.5625;
+        border-radius: 1.5625rem;
         max-width: 57.5rem;
         margin-inline: auto;
     }
