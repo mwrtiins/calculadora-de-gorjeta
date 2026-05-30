@@ -7,6 +7,7 @@ contaInput.addEventListener("input", receberValorConta )
 
 function receberValorConta(evento) {
     conta = Number(evento.target.value)
+    calcular()
 }
 
 const pessoasInput = document.querySelector("#pessoas")
@@ -23,7 +24,10 @@ function receberQuantidadePessoas(evento){
         paragrafoErro.style.display = "none"
         divErro.setAttribute("id", "")
         pessoas = Number(evento.target.value)
+
     }
+
+    calcular()
 }
 
 const botoesGorjeta = document.querySelectorAll(".gorjeta input[type='button']")
@@ -50,9 +54,38 @@ function receberPorcentagem(evento){
         porcentagem = 0
     }
         
-    console.log(porcentagem)
+    calcular()
 }
 
 const gorjetaInput = document.querySelector("#outra")
 
 gorjetaInput.addEventListener("input",receberPorcentagem)
+
+function calcular(){
+    if(conta !== 0 && porcentagem !== 0 && pessoas !=0){
+        const strongGojertaTotal = document.querySelector(".gorjeta-total > strong")
+        strongGojertaTotal.innerHTML = `R$ ${(conta * porcentagem / pessoas).toFixed(2)}`
+
+        const strongTotal = document.querySelector(".total > strong")
+        strongTotal.innerHTML = `R$ ${((conta + (conta * porcentagem)) / pessoas).toFixed(2)}`
+    } 
+}
+
+const botaoLimpar = document.querySelector(".resultados button")
+botaoLimpar.addEventListener("click", limpar)
+
+function limpar(){
+    contaInput.value = ""
+
+    botoesGorjeta.forEach(botao => {
+        botao.classList.remove("botao-ativo")
+    })
+
+    gorjetaInput.value = ""
+
+    pessoasInput.value = ""
+
+    document.querySelector(".gorjeta-total > strong").innerHTML = "R$ 0.00"
+
+    document.querySelector(".total > strong").innerHTML = "R$ 0.00"
+}
